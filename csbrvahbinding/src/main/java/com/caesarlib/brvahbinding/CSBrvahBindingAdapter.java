@@ -29,7 +29,7 @@ public class CSBrvahBindingAdapter {
     public static <T> void setCSBravhAdapter(RecyclerView recyclerView, BaseQuickAdapter adapter, CSBrvahLayoutManager.LayoutManagerFactory layoutManager, BaseQuickAdapter.SpanSizeLookup spanSizeLookup, MultiTypeDelegate<T> multiTypeDelegate, ArrayList<CSBravhItemBinding> headBinding, ArrayList<CSBravhItemBinding> footBinding, BaseQuickAdapter.RequestLoadMoreListener loadMoreListener, RecyclerView.ItemDecoration itemDecoration, BaseAnimation animationCustom, LoadMoreView loadMoreView, BaseQuickAdapter.UpFetchListener upFetchListener, ObservableInt animationType) {
 
         RecyclerView.Adapter oldAdapter = recyclerView.getAdapter();
-        adapter = initAdapter(recyclerView, adapter, oldAdapter, spanSizeLookup, multiTypeDelegate,itemDecoration, loadMoreListener, loadMoreView, upFetchListener,animationType);
+        adapter = initAdapter(recyclerView, adapter, oldAdapter, spanSizeLookup, multiTypeDelegate,itemDecoration, loadMoreListener, loadMoreView, upFetchListener,animationType,animationCustom);
         CSLog.Print("适配器是否为空:" + (adapter == null));
         Context context = recyclerView.getContext();
         if (layoutManager != null) {
@@ -59,14 +59,10 @@ public class CSBrvahBindingAdapter {
                 adapter.addFooterView(viewBinding.getRoot());
             }
         }
-        if (animationCustom != null) {
-            adapter.openLoadAnimation(animationCustom);
-        }
-
     }
 
 
-    private static <T> BaseQuickAdapter initAdapter(RecyclerView recyclerView, BaseQuickAdapter adapter, RecyclerView.Adapter oldAdapter, BaseQuickAdapter.SpanSizeLookup spanSizeLookup, MultiTypeDelegate<T> multiTypeDelegate,RecyclerView.ItemDecoration itemDecoration, BaseQuickAdapter.RequestLoadMoreListener loadMoreListener, LoadMoreView loadMoreView, BaseQuickAdapter.UpFetchListener upFetchListener, ObservableInt animationType) {
+    private static <T> BaseQuickAdapter initAdapter(RecyclerView recyclerView, BaseQuickAdapter adapter, RecyclerView.Adapter oldAdapter, BaseQuickAdapter.SpanSizeLookup spanSizeLookup, MultiTypeDelegate<T> multiTypeDelegate,RecyclerView.ItemDecoration itemDecoration, BaseQuickAdapter.RequestLoadMoreListener loadMoreListener, LoadMoreView loadMoreView, BaseQuickAdapter.UpFetchListener upFetchListener, ObservableInt animationType,BaseAnimation animationCustom) {
 
 
         if (adapter == null) {
@@ -86,7 +82,6 @@ public class CSBrvahBindingAdapter {
             }
             if (loadMoreListener != null) {
                 adapter.setOnLoadMoreListener(loadMoreListener, recyclerView);
-//            adapter.disableLoadMoreIfNotFullPage();
             }
             if (multiTypeDelegate != null && (adapter instanceof CSItemBindingAdapter)) {
                 CSLog.Print("设置了multiTypeDelegate");
@@ -103,6 +98,9 @@ public class CSBrvahBindingAdapter {
             }
             if (recyclerView.getItemDecorationCount() == 0 && itemDecoration != null) {
                 recyclerView.addItemDecoration(itemDecoration);
+            }
+            if (animationCustom != null) {
+                adapter.openLoadAnimation(animationCustom);
             }
         }
 
