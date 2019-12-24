@@ -10,7 +10,8 @@
         android:name=".base.MyApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loadmore.LoadMoreChatActivity"></activity>
+        <activity android:name=".twolist.TwoListActivity"/>
+        <activity android:name=".loadmore.LoadMoreChatActivity"/>
         <activity android:name=".loadmore.LoadMoreLineActivity" />
         <activity android:name=".expand.ExpandActivity" />
         <activity android:name=".swipe.SwipeActivity" />
