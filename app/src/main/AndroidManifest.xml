@@ -3,16 +3,17 @@
     package="com.caesar.brvahbinding">
 
     <application
+        android:name=".base.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name=".base.MyApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".customadapter.CustomAdapterActivity"></activity>
-        <activity android:name=".twolist.TwoListActivity"/>
-        <activity android:name=".loadmore.LoadMoreChatActivity"/>
+        <activity android:name=".drag.DragASwipeActivity"></activity>
+        <activity android:name=".customadapter.CustomAdapterActivity" />
+        <activity android:name=".twolist.TwoListActivity" />
+        <activity android:name=".loadmore.LoadMoreChatActivity" />
         <activity android:name=".loadmore.LoadMoreLineActivity" />
         <activity android:name=".expand.ExpandActivity" />
         <activity android:name=".swipe.SwipeActivity" />
@@ -23,7 +24,7 @@
         <activity android:name=".multiple.MultipleLineActivity" />
         <activity android:name=".animation.AnimationCustomActivity" />
         <activity android:name=".animation.AnimationActivity" />
-        <activity android:name="com.caesar.brvahbinding.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
