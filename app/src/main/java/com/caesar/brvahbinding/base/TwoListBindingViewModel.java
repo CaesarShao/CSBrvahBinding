@@ -29,9 +29,9 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
+public abstract class TwoListBindingViewModel<A, B> extends BaseViewModel {
 
-
+//第一个列表的属性
 
     //数据集
     public ObservableArrayList<A> itemsA;
@@ -67,8 +67,7 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     protected Disposable disposableA;
 
 
-
-
+//第二个列表的属性
 
     //数据集
     public ObservableArrayList<B> itemsB;
@@ -106,7 +105,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     public TwoListBindingViewModel() {
 
 
-
         itemsA = new ObservableArrayList<>();
         itemBindingA = getItemBindingA();
         bindingAdapterA = getBindingAdapterA();
@@ -120,8 +118,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
             bindingAdapterA = new CSBindingAdapter<>(itemBindingA, itemsA);
         }
         bindingAdapterA.isFirstOnly(isAnimationFirstOnley());
-
-
 
 
         itemsB = new ObservableArrayList<>();
@@ -138,7 +134,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
         }
         bindingAdapterB.isFirstOnly(isAnimationFirstOnley());
     }
-
 
 
     protected void loadA(Flowable<List<A>> flowable) {
@@ -173,10 +168,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
                     }
                 });
     }
-
-
-
-
 
 
     protected void loadB(Flowable<List<B>> flowable) {
@@ -259,7 +250,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     }
 
 
-
     protected CSItemBindingAdapter<A, BaseViewHolder> getBindingAdapterA() {
         return null;
     }
@@ -267,9 +257,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     protected CSItemBindingAdapter<B, BaseViewHolder> getBindingAdapterB() {
         return null;
     }
-
-
-
 
 
     public void addItemsA(List<A> newData) {
@@ -360,7 +347,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     }
 
 
-
     public RecyclerView.ItemDecoration onitemDecorationA() {
         return null;
     }
@@ -368,7 +354,6 @@ public abstract class TwoListBindingViewModel<A,B> extends BaseViewModel {
     public RecyclerView.ItemDecoration onitemDecorationB() {
         return null;
     }
-
 
 
     public SwipeRefreshLayout.OnRefreshListener getRefreshListenerA() {

@@ -22,12 +22,12 @@ import io.reactivex.FlowableOnSubscribe;
 
 public class LoadMoreChatViewModel extends FetchLoadBindingViewModel<MultiItemEntity> {
     private boolean isFirst = true;
-
+    //构造函数中,有个列表参数,目的是,当第一次加载成功时,滑到最下面
     public LoadMoreChatViewModel(RecyclerView recyclerView) {
         super(recyclerView);
 
     }
-
+    //常规的绑定item,不过这边加了另外2个item,加载到底和加载失败的item,这部分用户可以自己定义
     @Override
     protected Map<Integer, CSBravhItemBinding> getItemBinding() {
         Map<Integer, CSBravhItemBinding> mp = new HashMap<>();
@@ -38,7 +38,7 @@ public class LoadMoreChatViewModel extends FetchLoadBindingViewModel<MultiItemEn
         return mp;
     }
 
-
+    //跟加载更多一样
     @Override
     public void load(int mPage) {
         if (mPage == 3) {

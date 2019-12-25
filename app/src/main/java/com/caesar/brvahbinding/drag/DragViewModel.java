@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.listener.OnItemDragListener;
 public class DragViewModel extends NonMultiViewModel {
     private boolean isSwipe = true;
 
-    @Override
+    @Override//只要设置拖动监听器,就可以实现拖动功能
     public OnItemDragListener getItemDragListener() {
         return new OnItemDragListener() {
             @Override
@@ -32,7 +32,7 @@ public class DragViewModel extends NonMultiViewModel {
             }
         };
     }
-
+    //拖动开关
     public void onSwi(View view) {
         if (isSwipe) {
             isSwipe = false;
