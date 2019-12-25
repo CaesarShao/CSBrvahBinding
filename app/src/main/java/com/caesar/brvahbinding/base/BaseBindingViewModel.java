@@ -66,6 +66,7 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
     protected Disposable disposable;
     //滑动删除监听
     public OnItemSwipeListener onItemSwipeListener;
+    public ObservableInt swipeMoveFrags;
     //长按拖动监听
     public OnItemDragListener onItemDragListener;
 
@@ -80,6 +81,7 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
         refreshListener = getRefreshListener();
         animationType = new ObservableInt(BaseQuickAdapter.SLIDEIN_BOTTOM);
         onItemSwipeListener = getItemSwipeListener();
+        swipeMoveFrags = new ObservableInt(getOnSwipeMoveFrags());
         onItemDragListener = getItemDragListener();
         if (bindingAdapter == null) {
             bindingAdapter = new CSBindingAdapter<>(itemBinding, items);
@@ -235,7 +237,9 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
     public OnItemSwipeListener getItemSwipeListener() {
         return null;
     }
-
+    public int getOnSwipeMoveFrags() {
+        return -1;
+    }
     public OnItemDragListener getItemDragListener() {
         return null;
     }

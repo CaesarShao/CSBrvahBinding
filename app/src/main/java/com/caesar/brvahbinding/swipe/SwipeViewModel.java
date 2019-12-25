@@ -3,6 +3,7 @@ package com.caesar.brvahbinding.swipe;
 import android.graphics.Canvas;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.caesar.brvahbinding.R;
@@ -71,6 +72,10 @@ public class SwipeViewModel extends BaseBindingViewModel<SimpleData> {
             isSwipe = true;
             bindingAdapter.getDraggableController().enableSwipeItem();
         }
+    }
+    @Override
+    public int getOnSwipeMoveFrags() {
+        return ItemTouchHelper.START | ItemTouchHelper.END;
     }
 
 }
