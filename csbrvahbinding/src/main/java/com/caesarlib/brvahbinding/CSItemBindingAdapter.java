@@ -3,6 +3,7 @@ package com.caesarlib.brvahbinding;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public abstract class CSItemBindingAdapter<T, V extends BaseViewHolder> extends 
     private Map<Integer, CSBravhItemBinding> bravhItemBinding;
     private MultiTypeDelegate multiTypeDelegate;
     private DraggableController mDraggableController;
+    private ItemTouchHelper itemTouchHelper;
 
     private CSBindingListChangedCallBack bindingListChangedCallBack;
 
@@ -97,5 +99,12 @@ public abstract class CSItemBindingAdapter<T, V extends BaseViewHolder> extends 
             mDraggableController = new DraggableController(this);
         }
         return mDraggableController;
+    }
+
+    public ItemTouchHelper getItemTouchHelper(ItemTouchHelper.Callback callback) {
+        if (itemTouchHelper == null) {
+            itemTouchHelper = new ItemTouchHelper(callback);
+        }
+        return itemTouchHelper;
     }
 }

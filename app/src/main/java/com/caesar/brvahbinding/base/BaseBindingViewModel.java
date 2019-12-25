@@ -16,6 +16,8 @@ import com.caesarlib.brvahbinding.CSLog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.animation.BaseAnimation;
+import com.chad.library.adapter.base.listener.OnItemDragListener;
+import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.chad.library.adapter.base.util.MultiTypeDelegate;
 
 import java.util.ArrayList;
@@ -62,6 +64,10 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
     public RecyclerView mRecyclerView;
 
     protected Disposable disposable;
+    //滑动删除监听
+    public OnItemSwipeListener onItemSwipeListener;
+    //长按拖动监听
+    public OnItemDragListener onItemDragListener;
 
     public BaseBindingViewModel() {
         items = new ObservableArrayList<>();
@@ -73,6 +79,8 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
         isRefreshing = new ObservableBoolean();
         refreshListener = getRefreshListener();
         animationType = new ObservableInt(BaseQuickAdapter.SLIDEIN_BOTTOM);
+        onItemSwipeListener = getItemSwipeListener();
+        onItemDragListener = getItemDragListener();
         if (bindingAdapter == null) {
             bindingAdapter = new CSBindingAdapter<>(itemBinding, items);
         }
@@ -223,6 +231,13 @@ public abstract class BaseBindingViewModel<B> extends BaseViewModel {
 
     public void onDataLoadComplete() {
 
+    }
+    public OnItemSwipeListener getItemSwipeListener() {
+        return null;
+    }
+
+    public OnItemDragListener getItemDragListener() {
+        return null;
     }
 
 }

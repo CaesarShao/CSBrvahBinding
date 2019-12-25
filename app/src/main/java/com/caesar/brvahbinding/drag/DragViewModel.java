@@ -3,6 +3,7 @@ package com.caesar.brvahbinding.drag;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import com.caesar.brvahbinding.nonMultiple.NonMultiViewModel;
 import com.caesarlib.brvahbinding.CSDragAndSwipeCallBack;
@@ -10,10 +11,11 @@ import com.chad.library.adapter.base.DraggableController;
 import com.chad.library.adapter.base.listener.OnItemDragListener;
 
 public class DragViewModel extends NonMultiViewModel {
-    public DragViewModel(RecyclerView recyclerView) {
-        super();
-        DraggableController draggableController = bindingAdapter.getDraggableController();
-        draggableController.setOnItemDragListener(new OnItemDragListener() {
+    private boolean isSwipe = true;
+
+    @Override
+    public OnItemDragListener getItemDragListener() {
+        return new OnItemDragListener() {
             @Override
             public void onItemDragStart(RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -28,11 +30,16 @@ public class DragViewModel extends NonMultiViewModel {
             public void onItemDragEnd(RecyclerView.ViewHolder viewHolder, int i) {
 
             }
-        });
-        CSDragAndSwipeCallBack itemDragAndSwipeCallback = new CSDragAndSwipeCallBack(draggableController);
-        //如果是单布局的拖动,可以用系统的ItemDragAndSwipeCallback,如果是多布局拖动功能,并且想要不同type之间也可以拖动,要用CSDragAndSwipeCallBack
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemDragAndSwipeCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        draggableController.enableDragItem(itemTouchHelper);
+        };
+    }
+
+    public void onSwi(View view) {
+        if (isSwipe) {
+            isSwipe = false;
+            bindingAdapter.getDraggableController().disableDragItem();
+        } else {
+            isSwipe = true;
+            bindingAdapter.getDraggableController().enableDragItem(bindingAdapter.getItemTouchHelper(null));
+        }
     }
 }
