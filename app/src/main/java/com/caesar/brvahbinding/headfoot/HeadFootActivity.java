@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.caesar.brvahbinding.R;
 import com.caesar.brvahbinding.databinding.ActivityHeadFootBinding;
+import com.caesar.brvahbinding.databinding.ActivityHeadFootKotBinding;
 
 public class HeadFootActivity extends AppCompatActivity {
 
@@ -13,9 +14,15 @@ public class HeadFootActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head_foot);
-        ActivityHeadFootBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_head_foot);
-        HeadFootViewModel headFootViewModel =new HeadFootViewModel();
-        binding.setVm(headFootViewModel);
-        headFootViewModel.load();
+//        ActivityHeadFootBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_head_foot);
+//        HeadFootViewModel headFootViewModel =new HeadFootViewModel();
+//        binding.setVm(headFootViewModel);
+//        headFootViewModel.load();
+
+
+        ActivityHeadFootKotBinding bindingkot = DataBindingUtil.setContentView(this, R.layout.activity_head_foot_kot);
+        HeadFootViewModelKot headFootViewModelkot = new HeadFootViewModelKot();
+        bindingkot.setVm(headFootViewModelkot);
+        headFootViewModelkot.load();
     }
 }
